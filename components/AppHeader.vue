@@ -4,12 +4,13 @@ import { ref } from 'vue';
 const links = [
   [{
     label: 'Home',
+    to: '/'
   }, {
     label: 'About',
-    to: '/components/horizontal-navigation'
+    to: '/about'
   }, {
     label: 'Projects',
-    to: '/components/command-palette'
+    to: '/projects'
   }]
 ];
 

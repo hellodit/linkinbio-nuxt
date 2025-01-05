@@ -1,5 +1,6 @@
 <template>
-  <ULink :to="`/products/${props.slug}`">
+  <ULink
+      :to="`/products/${props.slug}`">
     <div class="flex items-start p-4 bg-white shadow rounded-lg w-full max-w-sm mb-3">
       <!-- Image Section -->
       <div class="flex-shrink-0 w-20 h-20">

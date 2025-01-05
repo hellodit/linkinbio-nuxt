@@ -7,15 +7,21 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1',
         }
     },
-    devtools: {enabled: true},
+    devtools: {enabled: false},
     modules: [
-        '@nuxt/ui',
-        '@nuxt/icon',
-        '@nuxtjs/tailwindcss',
-        '@nuxtjs/supabase',
-        '@nuxt/image'
+      '@nuxt/ui',
+      '@nuxt/icon',
+      '@nuxtjs/tailwindcss',
+      '@nuxtjs/supabase',
+      '@nuxt/image',
+      '@nuxtjs/mdc',
     ],
-    tailwindcss: {
-        // Options
-    }
+    tailwindcss: {},
+    supabase: {
+        redirect: false,
+        redirectOptions: {
+            login: '/login',
+            callback: '/confirm',
+        }
+    },
 })

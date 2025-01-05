@@ -12,7 +12,7 @@
 
 
 <script setup lang="ts">
-import {Link} from '~/types'
+import type  {Link} from '~/types/link'
 
 const client = useSupabaseClient()
 
@@ -27,7 +27,6 @@ const {data: links} = await useAsyncData<Link[]>('links', async () => {
     console.error('Error fetching links:', error)
     throw new Error('Failed to fetch links')
   }
-  console.log(data)
   return data || []
 })
 

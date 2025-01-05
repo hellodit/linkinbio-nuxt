@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const profile = reactive({
-  name: 'Asdita Prasetya',
-  username: 'codingtengahmalam',
-  avatar: '/avatar.jpg',
-  bio: 'Experienced Backend Developer | Specializing in scalable systems with Laravel, Go, Ruby, & Node.js. Helping devs master coding & architecture. 💕'
-})
+import profileData from '~/assets/data/profile.json';
+
+const profile = reactive(profileData);
 
 const socialLinks = [
   {name: 'Instagram', href: 'https://instagram.com/codingtengahmalam', icon: 'simple-icons:instagram'},
