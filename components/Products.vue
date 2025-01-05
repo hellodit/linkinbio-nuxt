@@ -1,5 +1,5 @@
 <template>
-  <div class="grid gap-2 grid-cols-2">
+  <div class="space-y-2">
     <HomeProductCard
         v-for="product in products"
         :key="product.id"
@@ -10,6 +10,9 @@
         :slug="product.slug"
     />
   </div>
+
+
+
 </template>
 
 

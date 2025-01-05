@@ -9,6 +9,7 @@ const profile = reactive({
 const socialLinks = [
   {name: 'Instagram', href: 'https://instagram.com/codingtengahmalam', icon: 'simple-icons:instagram'},
   {name: 'YouTube', href: 'https://youtube.com/@codingtengahmalam', icon: 'simple-icons:youtube'},
+  {name: 'Tiktok', href: 'https://youtube.com/@codingtengahmalam', icon: 'simple-icons:tiktok'},
 ]
 
 </script>
@@ -35,16 +36,16 @@ const socialLinks = [
     {{ profile.bio }}
   </p>
   <!-- Profile Section -->
-  <div class="text-center mb-12">
+  <div class="text-center mb-5">
     <!-- Social Links -->
-    <div class="flex justify-center gap-4 mt-4">
+    <div class="flex justify-start gap-4 mt-4">
       <NuxtLink
           v-for="social in socialLinks"
           :key="social.name"
           :to="social.href"
           class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100"
       >
-        <component :is="social.icon" class="h-6 w-6"/>
+          <UIcon :name="social.icon" class="w-5 h-5" />
       </NuxtLink>
     </div>
   </div>

@@ -1,27 +1,44 @@
 <template>
   <ULink :to="`/products/${props.slug}`">
-    <div class="rounded-xl border bg-card text-card-foreground shadow w-full max-w-sm overflow-hidden group">
-      <div class="aspect-[4/3] relative">
+    <div class="flex items-start p-4 bg-white shadow rounded-lg w-full max-w-sm mb-3">
+      <!-- Image Section -->
+      <div class="flex-shrink-0 w-20 h-20">
         <NuxtImg
             :src="props.image"
-            alt="Bundle Source Code RestFull API GoLang"
-            class="object-cover w-full h-full"
+            alt="Product Thumbnail"
+            class="object-cover w-full h-full rounded"
         />
       </div>
-      <div class="p-4">
-        <h3 class="mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">
+
+      <!-- Content Section -->
+      <div class="ml-4 flex-1">
+        <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-300">
           {{ props.title }}
         </h3>
-
-        <div class="mb-4 flex items-baseline gap-2">
-          <span class="text-sm font-medium text-gray-900 dark:text-white">
-            {{ formatToRupiah(props.price) }}
+        <div class="flex items-center space-x-2 mt-1">
+          <!-- Star Ratings -->
+          <span
+              v-for="n in 5"
+              :key="n"
+              class="text-yellow-500 flex items-center"
+          >
+            <UIcon name="i-heroicons-star-solid" class="w-4 h-4"/>
           </span>
-          <span class="text-xs text-red-500 line-through dark:text-red-400">
+                    <span class="text-xs text-gray-500">
+                      (100)
+                    </span>
+        </div>
+
+        <div class="mt-2">
+          <span class="line-through text-xs text-gray-400">
             {{ formatToRupiah(props.discountPrice) }}
+          </span>
+          <span class="text-sm font-bold text-red-500">
+            {{ formatToRupiah(props.price) }}
           </span>
         </div>
       </div>
+
     </div>
   </ULink>
 </template>
