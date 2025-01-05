@@ -16,4 +16,9 @@
 
 <script setup lang="ts">
 import Default from "~/layouts/default.vue";
+
+useSeoMeta({
+  title: 'Home - @codingtengahmalam',
+  description: 'Sharing terkait per- Software Engineer -an, Belajar Coding, dan Kerja Remote. Rutinitas Coding tipis², Ngafe Santai, Ngopi.',
+})
 </script>
