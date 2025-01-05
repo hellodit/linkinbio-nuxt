@@ -12,8 +12,11 @@
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@nuxt/icon": "^1.10.3",
+    "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.20.0",
+    "@nuxtjs/supabase": "^1.4.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@supabase/supabase-js": "^2.47.10",
     "nuxt": "^3.15.0",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",

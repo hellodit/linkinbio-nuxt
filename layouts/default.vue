@@ -1,5 +1,4 @@
 <template>
-
   <main class="min-h-screen bg-gray-50 dark:bg-gray-900 px-4 py-8 md:px-6">
     <div class="mx-auto max-w-md">
       <app-navbar/>
@@ -8,10 +7,7 @@
         <slot/>
       </div>
     </div>
-
-
   </main>
-
 </template>
 
 <script setup lang="ts">
