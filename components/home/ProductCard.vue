@@ -1,7 +1,7 @@
 <template>
   <ULink
       :to="`/products/${props.slug}`">
-    <div class="flex items-start p-4 bg-white shadow rounded-lg w-full max-w-sm mb-3">
+    <div class="flex items-start p-4 bg-white dark:bg-gray-800 shadow rounded-lg w-full max-w-sm mb-3">
       <!-- Image Section -->
       <div class="flex-shrink-0 w-20 h-20">
         <NuxtImg
@@ -21,26 +21,29 @@
           <span
               v-for="n in 5"
               :key="n"
-              class="text-yellow-500 flex items-center"
+              class="text-yellow-500 dark:text-yellow-400 flex items-center"
           >
-            <UIcon name="i-heroicons-star-solid" class="w-4 h-4"/>
-          </span>
-                    <span class="text-xs text-gray-500">
-                      (100)
-                    </span>
+        <UIcon name="i-heroicons-star-solid" class="w-4 h-4"/>
+      </span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+        (100)
+      </span>
         </div>
 
-        <div class="mt-2">
-          <span class="line-through text-xs text-gray-400">
+        <div class="flex flex-row gap-2">
+          <span class=" text-sm text-gray-400 font-bold dark:text-gray-500">
             {{ formatToRupiah(props.discountPrice) }}
           </span>
-          <span class="text-sm font-bold text-red-500">
+            <span class="line-through text-sm  text-red-500 dark:text-red-400">
             {{ formatToRupiah(props.price) }}
           </span>
+
+
+
         </div>
       </div>
-
     </div>
+
   </ULink>
 </template>
 
