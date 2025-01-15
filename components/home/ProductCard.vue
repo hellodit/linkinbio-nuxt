@@ -8,6 +8,7 @@
             :src="props.image"
             alt="Product Thumbnail"
             class="object-cover w-full h-full rounded"
+            style="aspect-ratio: 1 / 1"
         />
       </div>
 
@@ -31,15 +32,14 @@
         </div>
 
         <div class="flex flex-row gap-2">
-          <span class=" text-sm text-gray-400 font-bold dark:text-gray-500">
-            {{ formatToRupiah(props.discountPrice) }}
+          <span v-if="props.discount_price > 0" class="text-sm text-gray-400 font-bold dark:text-gray-500">
+            {{ formatToRupiah(props.discount_price) }}
           </span>
-            <span class="line-through text-sm  text-red-500 dark:text-red-400">
+
+          <span
+              :class="{'line-through  text-sm text-red-500 dark:text-red-400': props.discount_price > 0, 'text-sm text-gray-500 dark:text-gray-400': props.discount_price === 0}">
             {{ formatToRupiah(props.price) }}
           </span>
-
-
-
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@ const props = defineProps<{
   title: string;
   image: string;
   price: number;
-  discountPrice: number;
+  discount_price: number;
   slug: string;
 }>();
 

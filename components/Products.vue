@@ -6,7 +6,7 @@
         :title="product.title"
         :image="product.image_url"
         :price="product.price"
-        :discountPrice="product.discount_price"
+        :discount_price="product.discount_price"
         :slug="product.slug"
     />
   </div>

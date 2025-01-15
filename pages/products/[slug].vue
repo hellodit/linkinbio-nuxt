@@ -24,30 +24,50 @@
               :key="n"
               class="text-yellow-500 dark:text-yellow-400 flex items-center"
           >
-            <UIcon name="i-heroicons-star-solid" class="w-4 h-4" />
+            <UIcon name="i-heroicons-star-solid" class="w-4 h-4"/>
           </span>
           <span class="text-xs text-gray-500 dark:text-gray-400">
             (100)
           </span>
         </div>
 
+        <div class="flex flex-row gap-2">
+          <span v-if="Product.discount_price > 0" class="text-sm text-gray-400 font-bold dark:text-gray-500">
+            {{ formatToRupiah(Product.discount_price) }}
+          </span>
+
+          <span
+              :class="{'line-through  text-sm text-red-500 dark:text-red-400': Product.discount_price > 0, 'text-sm text-gray-500 dark:text-gray-400': Product.discountPrice === 0}">
+            {{ formatToRupiah(Product.price) }}
+          </span>
+        </div>
 
 
         <div class="prose prose-sm dark:prose-invert">
-          <MDC :value="Product.description" tag="article" />
+          <MDC :value="Product.description" tag="article"/>
         </div>
       </div>
     </div>
   </div>
 
-  <div v-if="Product" class="fixed bottom-0 left-0 right-0 p-4 bg-white dark:bg-gray-900 w-full">
-    <div class="max-w-6xl mx-auto w-full px-4 bg-white dark:bg-gray-900">
+  <div v-if="Product" class="fixed bottom-0 left-0 right-0 p-2 bg-white dark:bg-gray-900 w-full border-t shadow">
+    <div class="flex flex-row gap-2 max-w-sm mx-auto px-4 bg-white dark:bg-gray-900">
+      <UButton
+          to="https://instagram.com/codingtengahmalam"
+          size="lg"
+          variant="outline"
+          class="basis-[15%]"
+          target="_blank"
+      >
+        <Icon name="i-heroicons-chat-bubble-left-right" class="w-5 h-5"/>
+      </UButton>
+
       <UButton
           :to="Product.checkout_url"
           color="primary"
           size="lg"
+          class="basis-[85%] justify-center"
           target="_blank"
-          block
       >
         Order Sekarang
       </UButton>
@@ -70,6 +90,7 @@ definePageMeta({
 });
 
 
+
 const client = useSupabaseClient();
 
 const {data: Product} = await useAsyncData<Product>('product', async () => {
@@ -88,7 +109,13 @@ const {data: Product} = await useAsyncData<Product>('product', async () => {
     throw new Error('Failed to fetch product');
   }
 
-  console.log(data);
+  useSeoMeta({
+    title: data.title,
+    description: data.title,
+  })
+
+
+
   return data;
 });
 </script>
