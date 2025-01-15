@@ -8,9 +8,13 @@
       </div>
     </div>
   </main>
+  <Analytics />
+  <SpeedInsights/>
 </template>
 
 <script setup lang="ts">
 import AppNavbar from "~/components/AppHeader.vue";
 import ProfileHeader from "~/components/ProfileHeader.vue";
+import { Analytics } from '@vercel/analytics/nuxt';
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
 </script>

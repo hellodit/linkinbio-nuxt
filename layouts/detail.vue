@@ -11,10 +11,14 @@
       </div>
     </div>
   </main>
+  <Analytics />
+  <SpeedInsights/>
 </template>
 
 <script setup lang="ts">
 import AppProfile from "~/components/AppProfile.vue";
+import { Analytics } from '@vercel/analytics/nuxt';
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
 
 
 </script>
