@@ -2,6 +2,7 @@
   <div class="space-y-2">
     <HomeProductCard
         v-for="product in products"
+        :description="product.description"
         :key="product.id"
         :title="product.title"
         :image="product.image_url"

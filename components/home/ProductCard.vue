@@ -1,23 +1,27 @@
 <template>
   <ULink
       :to="`/products/${props.slug}`">
-    <div class="flex items-start p-4 bg-white dark:bg-gray-800 shadow rounded-lg w-full max-w-sm mb-3">
+    <div class="flex items-start p-4 bg-white dark:bg-gray-800 shadow rounded-lg w-full mb-3">
       <!-- Image Section -->
-      <div class="flex-shrink-0 w-20 h-20">
+      <div class="flex-shrink-0 w-24 h-24">
         <NuxtImg
             :src="props.image"
             alt="Product Thumbnail"
             class="object-cover w-full h-full rounded"
-            style="aspect-ratio: 1 / 1"
         />
       </div>
 
       <!-- Content Section -->
       <div class="ml-4 flex-1">
-        <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-300">
+        <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-300 mb-2">
           {{ props.title }}
         </h3>
-        <div class="flex items-center space-x-2 mt-1">
+
+        <p class="line-clamp-2 text-gray text-xs mb-2">
+          {{ props.description }}
+        </p>
+
+        <div class="flex items-center space-x-2 mb-2">
           <!-- Star Ratings -->
           <span
               v-for="n in 5"
@@ -32,12 +36,12 @@
         </div>
 
         <div class="flex flex-row gap-2">
-          <span v-if="props.discount_price > 0" class="text-sm text-gray-400 font-bold dark:text-gray-500">
+          <span v-if="props.discount_price > 0" class="text-sm text-gray-500 font-bold dark:text-white-500">
             {{ formatToRupiah(props.discount_price) }}
           </span>
 
           <span
-              :class="{'line-through  text-sm text-red-500 dark:text-red-400': props.discount_price > 0, 'text-sm text-gray-500 dark:text-gray-400': props.discount_price === 0}">
+              :class="{'line-through  text-sm text-red-500 dark:text-red-400': props.discount_price > 0, 'text-sm font-bold text-gray-500 dark:text-white-500': props.discount_price === 0}">
             {{ formatToRupiah(props.price) }}
           </span>
         </div>
@@ -55,6 +59,7 @@ const props = defineProps<{
   title: string;
   image: string;
   price: number;
+  description: string;
   discount_price: number;
   slug: string;
 }>();
