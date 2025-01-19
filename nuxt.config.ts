@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
     devtools: {enabled: false},
     modules: [
+        '@nuxt/content',
       '@nuxt/ui',
       '@nuxt/icon',
       '@nuxtjs/tailwindcss',
