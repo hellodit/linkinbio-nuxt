@@ -17,62 +17,21 @@
         </UButton>
       </div>
     </template>
+
     <template v-else>
       <div class="p-0">
-        <div class="relative aspect-video w-full overflow-hidden mb-3 shadow rounded-t-lg">
-          <NuxtImg
-              sizes="100vw"
-              class="object-cover"
-              :src="Product.image_url"
-              alt="Product Image"
-          />
-        </div>
 
-        <div class="space-y-2 p-2">
-          <div class="flex items-start justify-between gap-4">
-            <h1 class="text-xl font-bold text-gray-900 dark:text-gray-100">
-              {{ Product.title }}
-            </h1>
-          </div>
+        <!-- Image Section -->
+        <Cover :image_url="Product.image_url"/>
 
-          <div class="flex items-center space-x-2">
-            <!-- Star Ratings -->
-            <span
-                v-for="n in 5"
-                :key="n"
-                class="text-yellow-500 dark:text-yellow-400 flex items-center"
-            >
-              <UIcon name="i-heroicons-star-solid" class="w-4 h-4" />
-            </span>
-            <span class="text-xs text-gray-500 dark:text-gray-400">
-              (100)
-            </span>
-          </div>
+        <!-- product detail -->
+        <Description
+            :title="Product.title"
+            :discount_price="Product.discount_price"
+            :price="Product.price"
+            :description="Product.description"
+        />
 
-          <div class="flex flex-row gap-2">
-            <span
-                v-if="Product.discount_price > 0"
-                class="text-sm text-gray-400 font-bold dark:text-gray-500"
-            >
-              {{ formatToRupiah(Product.discount_price) }}
-            </span>
-
-            <span
-                :class="{
-                'line-through text-sm text-red-500 dark:text-red-400':
-                  Product.discount_price > 0,
-                'text-sm text-gray-500 dark:text-gray-400':
-                  Product.discountPrice === 0
-              }"
-            >
-              {{ formatToRupiah(Product.price) }}
-            </span>
-          </div>
-
-          <div class="prose prose-sm dark:prose-invert">
-            <MDC :value="Product.description" tag="article" />
-          </div>
-        </div>
       </div>
     </template>
   </div>
@@ -91,7 +50,7 @@
           class="basis-[15%]"
           target="_blank"
       >
-        <Icon name="i-heroicons-chat-bubble-left-right" class="w-5 h-5" />
+        <Icon name="i-heroicons-chat-bubble-left-right" class="w-5 h-5"/>
       </UButton>
 
       <UButton
@@ -108,10 +67,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '~/types/product';
-import { useRoute } from 'vue-router';
-import { ref } from 'vue';
-import { formatToRupiah } from '~/utils/number';
+import type {Product} from '~/types/product';
+import {useRoute} from 'vue-router';
+import {ref} from 'vue';
+
+import Cover from "~/components/product/cover.vue";
+import Description from "~/components/product/description.vue";
 
 const route = useRoute();
 const slug = route.params.slug;
@@ -121,6 +82,12 @@ definePageMeta({
 });
 
 const client = useSupabaseClient();
+
+useSeoMeta({
+  title: 'Product Detail',
+  description: 'Product desc',
+});
+
 
 // State Management
 const loading = ref(true);
@@ -132,7 +99,7 @@ const fetchProduct = async () => {
   loading.value = true;
   error.value = false;
   try {
-    const { data, error: fetchError } = await client
+    const {data, error: fetchError} = await client
         .from('products')
         .select('*')
         .eq('is_published', true)
@@ -145,8 +112,8 @@ const fetchProduct = async () => {
 
     Product.value = data;
     useSeoMeta({
-      title: data.title,
-      description: data.title,
+      title: data?.title,
+      description: data?.title,
     });
   } catch (e) {
     console.error('Error fetching product:', e);
