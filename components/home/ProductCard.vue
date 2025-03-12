@@ -1,9 +1,9 @@
 <template>
   <ULink
       :to="`/products/${props.slug}`">
-    <div class="flex items-start p-4 bg-white dark:bg-gray-800 shadow rounded-lg w-full mb-3">
+    <div class="p-4 bg-white dark:bg-gray-800 shadow rounded-lg w-full mb-3">
       <!-- Image Section -->
-      <div class="flex-shrink-0 w-24 h-24">
+      <div class="mb-3">
         <NuxtImg
             :src="props.image"
             alt="Product Thumbnail"
@@ -12,12 +12,23 @@
       </div>
 
       <!-- Content Section -->
-      <div class="ml-4 flex-1">
-        <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-300 mb-2">
+      <div class="">
+        <h3 class="text-md font-bold text-gray-800 dark:text-white mb-1">
           {{ props.title }}
         </h3>
 
-        <p class="line-clamp-2 text-gray text-xs mb-2">
+        <div class="flex flex-row gap-2 mb-2">
+          <span v-if="props.discount_price > 0" class="text-sm text-gray-500 font-bold dark:text-white">
+            {{ formatToRupiah(props.discount_price) }}
+          </span>
+
+          <span
+              :class="{'line-through  text-sm text-red-500 dark:text-red-400': props.discount_price > 0, 'text-sm font-bold text-gray-500 dark:text-white': props.discount_price === 0}">
+            {{ formatToRupiah(props.price) }}
+          </span>
+        </div>
+
+        <p class="line-clamp-5 text-gray text-xs mb-2">
           {{ props.description }}
         </p>
 
@@ -35,16 +46,7 @@
       </span>
         </div>
 
-        <div class="flex flex-row gap-2">
-          <span v-if="props.discount_price > 0" class="text-sm text-gray-500 font-bold dark:text-white-500">
-            {{ formatToRupiah(props.discount_price) }}
-          </span>
-
-          <span
-              :class="{'line-through  text-sm text-red-500 dark:text-red-400': props.discount_price > 0, 'text-sm font-bold text-gray-500 dark:text-white-500': props.discount_price === 0}">
-            {{ formatToRupiah(props.price) }}
-          </span>
-        </div>
+   
       </div>
     </div>
 
